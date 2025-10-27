@@ -32,7 +32,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 </p>
 <p>
-<b>1) </b>Create our Virtual Machines
+<b>1) </b>Create two Virtual Machines
 
 </p>
 <p><b>1.1) </b>Create a Resource Group</p>
