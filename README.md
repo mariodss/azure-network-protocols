@@ -73,4 +73,57 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 <br />
 
+<p>
+<img width="304" height="106" alt="image" src="https://github.com/user-attachments/assets/52c89081-6266-48e7-a1a2-f13acffa302b" />
+<img width="169" height="92" alt="image" src="https://github.com/user-attachments/assets/fbf70eeb-b502-454b-9cb9-a9b1d1e25e32" />
+<img width="633" height="295" alt="image" src="https://github.com/user-attachments/assets/59c51778-0bb2-4a04-a002-cc99f1c9f92d" />
 
+
+</p>
+<p><b>2) </b>Observe ICMP Traffic</p>
+<p><b>2.1) </b>Use Remote Desktop to connect to your Windows 10 Virtual Machine. You will need to provide your public IP Address and username/password you created (If using Mac, install Microsoft Remote Desktop)</p>
+
+
+<br />
+
+
+<p>
+<img width="635" height="349" alt="image" src="https://github.com/user-attachments/assets/2e4f1cfe-97fb-44cc-997b-ed224b9d878b" />
+<img width="407" height="231" alt="image" src="https://github.com/user-attachments/assets/35487c6a-cd45-44ff-aaf8-e731c20cc2fe" />
+
+</p>
+<p><b>2.2) </b>Within your Windows 10 Virtual Machine, Install Wireshark</p>
+
+<br />
+
+<p>
+<img width="656" height="242" alt="image" src="https://github.com/user-attachments/assets/1735f455-4493-4559-ae22-4642ff9e3a4c" />
+<img width="654" height="363" alt="image" src="https://github.com/user-attachments/assets/ec93560a-8d3a-49c0-aca5-830a57c9e29f" />
+
+
+</p>
+<p><b>2.3) </b>Open Wireshark and start packet capture</p>
+
+<br />
+
+<p>
+<img width="530" height="233" alt="image" src="https://github.com/user-attachments/assets/c65ba471-a234-43f8-975b-699d806b164f" />
+
+
+</p>
+<p><b>2.4) </b>Within Wireshark, filter for ICMP traffic only
+</p>
+
+<br />
+
+<p>
+<img width="595" height="329" alt="image" src="https://github.com/user-attachments/assets/40108dec-1bf5-460a-a844-0479f88f3667" />
+<img width="631" height="374" alt="image" src="https://github.com/user-attachments/assets/207151a3-ebca-4957-b6f2-cbfde87c8ee4" />
+<img width="631" height="374" alt="image" src="https://github.com/user-attachments/assets/9c2cd003-45d4-4779-a6b4-d7161d63992c" />
+
+
+</p>
+<p><b>2.5) </b>Retrieve the private IP address of the Ubuntu VM (linux-vm) and attempt to ping it from within the Windows 10 VM
+</p>
+<p>-Observe ping requests and replies within WireShark</p>
+<br />
