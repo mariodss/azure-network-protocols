@@ -186,6 +186,6 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 </p>
 
-Stop the ping activity
+<p>Stop the ping activity</p>
 
 <br />
