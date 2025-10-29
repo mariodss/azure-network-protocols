@@ -135,8 +135,9 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 </p>
 <p><b>3) </b>Configuring a Firewall [Network Security Group]
+<p><b>3.1) </b>Initiate a perpetual/non-stop ping from your Windows 10 VM to your Ubuntu VM.</p>
 </p>
-<p><b>3.1) <b/>Initiate a perpetual/non-stop ping from your Windows 10 VM to your Ubuntu VM.</p>
+
 
 <br />
 
@@ -147,7 +148,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 </p>
 
-<p><b>3.2) <b/>Open the Network Security Group your Ubuntu VM is using and disable incoming (inbound) ICMP traffic.</p>
+<p><b>3.2) </b>Open the Network Security Group your Ubuntu VM is using and disable incoming (inbound) ICMP traffic.</p>
 
 <br />
 
@@ -186,6 +187,86 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 </p>
 
-<p>3.6) Stop the ping activity</p>
+<p><b>3.6) </b>Stop the ping activity</p>
+
+<br />
+
+<p>
+<img width="493" height="266" alt="image" src="https://github.com/user-attachments/assets/7b3ab3ca-5cda-4250-b2bf-1770a336c9a2" />
+<img width="260" height="164" alt="image" src="https://github.com/user-attachments/assets/2a5d7629-2096-4b6e-83a7-a24aade16449" />
+
+
+</p>
+
+<p><b>4) </b>Observe SSH Traffic</p>
+<p><b>4.1) </b>Back in Wireshark, start a packet capture and filter for SSH traffic only.
+</p>
+
+<br />
+
+<p>
+<img width="592" height="318" alt="image" src="https://github.com/user-attachments/assets/16da601a-179c-48cc-8e44-cb946bf33946" />
+<img width="477" height="115" alt="image" src="https://github.com/user-attachments/assets/908aa86e-228d-4729-8ee5-6f14a7ec0b6f" />
+<img width="604" height="323" alt="image" src="https://github.com/user-attachments/assets/7a2dcf33-7a23-4dcb-946e-978d9efeb731" />
+
+</p>
+
+<p><b>4.2) </b>From your Windows 10 VM, “SSH into” your Ubuntu Virtual Machine (via its private IP address).</p>
+<p><b>4.3) </b>Open PowerShell, and type: ssh labuser@<private IP address>.</p>
+<p>-Type commands (username, pwd, etc) into the linux SSH connection and observe SSH traffic spam in WireShark</p>
+<p>-Exit the SSH connection by typing ‘exit’ and pressing [Enter]</p>
+  
+<br />
+
+
+<p>
+<img width="659" height="328" alt="image" src="https://github.com/user-attachments/assets/f68e6624-7e02-4575-9759-17efdc89a9b5" />
+<img width="492" height="155" alt="image" src="https://github.com/user-attachments/assets/3fbdfbc2-2ea5-48b0-8e1f-ff3ae6b3bfea" />
+<img width="386" height="370" alt="image" src="https://github.com/user-attachments/assets/ee771a4f-f971-4c66-a6e8-3cb14b14aee6" />
+<img width="443" height="385" alt="image" src="https://github.com/user-attachments/assets/d6bad91e-b84f-4854-a423-a67972aca787" />
+<img width="358" height="145" alt="image" src="https://github.com/user-attachments/assets/997ec591-c951-4f8a-866d-d12034e43ade" />
+
+
+</p>
+
+<p><b>5) </b>Observe DHCP Traffic</p>
+<p><b>5.1) </b>Back in Wireshark, filter for DHCP traffic only.</p>
+<p><b>5.2) </b>From your Windows 10 VM, attempt to issue your VM a new IP address from the command line.</p>
+<p>-Open PowerShell as admin and run: ipconfig /renew</p>
+<p>-Observe the DHCP traffic appearing in WireShark</p>
+
+  
+<br />
+
+
+<p>
+<img width="362" height="131" alt="image" src="https://github.com/user-attachments/assets/a0f0cc1a-687f-4dc0-9056-a0237a07943e" />
+<img width="550" height="310" alt="image" src="https://github.com/user-attachments/assets/6d668130-1fa2-4c60-a4d8-35de23d578d3" />
+<img width="548" height="209" alt="image" src="https://github.com/user-attachments/assets/d6f37c6b-7e53-4763-bcd1-5500e9254818" />
+
+</p>
+
+<p><b>6) </b>Observe DNS Traffic</p>
+<p><b>6.1) </b>Back in Wireshark, filter for DNS traffic only.</p>
+<p><b>6.2) </b>From your Windows 10 VM within a command line, use nslookup to see what google.com and disney.com’s IP addresses are</p>
+<p>-Observe the DNS traffic being show in WireShark</p>
+
+
+
+<br />
+
+<p>
+<img width="545" height="275" alt="image" src="https://github.com/user-attachments/assets/d313b296-5f54-49f8-a4c0-75018cb0ca44" />
+
+
+</p>
+
+<p><b>7) </b>Observe RDP Traffic</p>
+<p><b>7.1) </b>Back in Wireshark, filter for RDP traffic only (tcp.port == 3389).</p>
+<p><b>7.2) </b>Observe the immediate non-stop spam of traffic</p>
+<p>- RDP (protocol) is constantly showing you a live stream from one computer to another.Therefore, traffic is always being transmitted.</p>
+
+
+
 
 <br />
