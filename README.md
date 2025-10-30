@@ -32,7 +32,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 </p>
 <p>
-<b>1) </b>Create two Virtual Machines
+<b>1) Create two Virtual Machines</b>
 
 </p>
 <p><b>1.1) </b>Create a Resource Group</p>
@@ -71,6 +71,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 </p>
 <p><b>1.4) </b>Ensure both VMs are in the same Virtual Network / Subnet.</p>
 
+
 <br />
 
 <p>
@@ -80,9 +81,8 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 
 </p>
-<p><b>2) </b>Observe ICMP Traffic</p>
+<p><b>2) Observe ICMP Traffic</b></p>
 <p><b>2.1) </b>Use Remote Desktop to connect to your Windows 10 Virtual Machine. You will need to provide your public IP Address and username/password you created (If using Mac, install Microsoft Remote Desktop)</p>
-
 
 <br />
 
@@ -126,6 +126,14 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p><b>2.5) </b>Retrieve the private IP address of the Ubuntu VM (linux-vm) and attempt to ping it from within the Windows 10 VM
 </p>
 <p>-Observe ping requests and replies within WireShark</p>
+
+<p>Observations</p>
+<p>-ICMP, or Internet Control Message Protocol, is used for network diagnostics and error reporting. It operates at the network layer and is primarily used by network devices to send error messages and operational information. </p>
+<p>-After we ping the linux private IP adress we observe 4 events happening in the powershell terminal. However, in the Wireshark window, we observe 8 events. This is because Wireshark captures both the request from the Windows computer (10.0.0.4) and the reply from the Linux computer (10.0.0.5).</p>
+<p>-If we click on either a request or a reply from the Wireshark terminal, we can observe their specifications. When we click on the first request packet, we can have a look at the source MAC adress(Windows) and the destination MAC adress (Linux) within the Internet Protocol Version 4 section. THis is OSI Layer 2 information.</p>
+<p>-If we go to the Internet Control Message Protocol section, we can observe the actual payload(chunk of data) that was sent in the ping. This is not important since this ping was performed to test connectivity between two devices.</p>
+<p>If we click on the second packet, we can inspect the echo reply from the Linux computer. When we have a look at the specifications, we see almost the same information but reversed. This time the source computer is the Linux machine and the destination computer is the Windows machine.</p>
+
 <br />
 
 <p>
@@ -134,7 +142,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 
 </p>
-<p><b>3) </b>Configuring a Firewall [Network Security Group]
+<p><b>3) Configuring a Firewall [Network Security Group]</b></p>
 <p><b>3.1) </b>Initiate a perpetual/non-stop ping from your Windows 10 VM to your Ubuntu VM.</p>
 </p>
 
@@ -189,6 +197,8 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 <p><b>3.6) </b>Stop the ping activity</p>
 
+<p>Observations</p>
+<p>-By creating an inbound security rule for our Linux machine we can block ICMP traffic from any source. After applying this rule to our machine, if we ping the Linux machine from our Windows mahine through PowerShell, we observe the ping traffic timing out.</p>
 <br />
 
 <p>
@@ -198,7 +208,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 </p>
 
-<p><b>4) </b>Observe SSH Traffic</p>
+<p><b>4) Observe SSH Traffic</b></p>
 <p><b>4.1) </b>Back in Wireshark, start a packet capture and filter for SSH traffic only.
 </p>
 
@@ -215,6 +225,13 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p><b>4.3) </b>Open PowerShell, and type: ssh labuser@<private IP address>.</p>
 <p>-Type commands (username, pwd, etc) into the linux SSH connection and observe SSH traffic spam in WireShark</p>
 <p>-Exit the SSH connection by typing ‘exit’ and pressing [Enter]</p>
+
+<p>Observations</p>
+<p>-SSH (Secure Shell) is used to make a secure connection with other computer. SSH uses TCP port 22. </p>
+<p>-By entering the following command in PowerShell: ssh username@<private IP Adress>, we can connect remotely to another computer. We will need to provide a password as well. In our case we connected to the Linux machine from our Windows machine.</p>
+<p>-We are able to use our Linux machine remotely. It is possible to interact with the Linux system by typing commands such as id, uname -a, touch file.txt, etc </p>
+<p>-In Wireshark we observe the SSH traffic happening in the background. All traffic is encrypted. If we observe the SSH section, we see the encrypted payload that was transmitted.</p>
+<p>-In order to kill the connection, se simply type exit on the PowerShell terminal.</p>
   
 <br />
 
@@ -229,12 +246,18 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 </p>
 
-<p><b>5) </b>Observe DHCP Traffic</p>
+<p><b>5) Observe DHCP Traffic</b></p>
 <p><b>5.1) </b>Back in Wireshark, filter for DHCP traffic only.</p>
 <p><b>5.2) </b>From your Windows 10 VM, attempt to issue your VM a new IP address from the command line.</p>
 <p>-Open PowerShell as admin and run: ipconfig /renew</p>
 <p>-Observe the DHCP traffic appearing in WireShark</p>
 
+<p>Observations</p>
+<p>-The command ipconfig /release is the one that drops (releases) the current IP address.</p>
+<p>-The command ipconfig /renew is used to request a new IP address from the DHCP server.</p>
+<p>DHCP uses UDP ports 67 and 68</p>
+<p>There is a method by which we can activate both release and renew commands in PowerSheell. We do this by creating a .bat file in the notepad application. We need to type both commands within the file and then if we type the command <filename.bat> in PowerShell, we should be able to release and renew at the same time. This is done to observe DHCP traffic in Wireshark.</p>
+<p>By following the previous method, we observe all the packages from the IP release/renewal process in the Wireshark Interface. They are a total of 5 packages: release, discover, offer, request and ACK. </p>
   
 <br />
 
@@ -246,7 +269,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 </p>
 
-<p><b>6) </b>Observe DNS Traffic</p>
+<p><b>6) Observe DNS Traffic</b></p>
 <p><b>6.1) </b>Back in Wireshark, filter for DNS traffic only.</p>
 <p><b>6.2) </b>From your Windows 10 VM within a command line, use nslookup to see what google.com and disney.com’s IP addresses are</p>
 <p>-Observe the DNS traffic being show in WireShark</p>
@@ -261,7 +284,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 </p>
 
-<p><b>7) </b>Observe RDP Traffic</p>
+<p><b>7) Observe RDP Traffic</b></p>
 <p><b>7.1) </b>Back in Wireshark, filter for RDP traffic only (tcp.port == 3389).</p>
 <p><b>7.2) </b>Observe the immediate non-stop spam of traffic</p>
 <p>- RDP (protocol) is constantly showing you a live stream from one computer to another.Therefore, traffic is always being transmitted.</p>
