@@ -130,7 +130,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 </p>
 <p>-Observe ping requests and replies within WireShark</p>
 
-<p>Observations</p>
+<p><b>Observations</b></p>
 <p>-ICMP, or Internet Control Message Protocol, is used for network diagnostics and error reporting. It operates at the network layer and is primarily used by network devices to send error messages and operational information. </p>
 <p>-After pinging the Linux private IP address, we observe four events in the PowerShell terminal. However, in the Wireshark window, we see eight events. This occurs because Wireshark captures both the request packets from the Windows computer (10.0.0.4) and the reply packets from the Linux computer (10.0.0.5).</p>
 <p>-If we click on either a request or a reply packet in the Wireshark interface, we can examine their specifications. When we click on the first request packet, we can view the source MAC address (Windows) and the destination MAC address (Linux) within the Internet Protocol Version 4 section. This represents OSI Layer 2 information.</p>
@@ -200,7 +200,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 <p><b>3.6) </b>Stop the ping activity</p>
 
-<p>Observations</p>
+<p><b>Observations</b></p>
 <p>-By creating an inbound security rule for our Linux machine we can block ICMP traffic from any source. After applying this rule to our machine, if we ping the Linux machine through PowerShell, we observe the ping traffic timing out.</p>
 <br />
 
@@ -229,7 +229,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p>-Type commands (username, pwd, etc) into the linux SSH connection and observe SSH traffic spam in WireShark</p>
 <p>-Exit the SSH connection by typing ‘exit’ and pressing [Enter]</p>
 
-<p>Observations</p>
+<p><b>Observations</b></p>
 <p>-SSH (Secure Shell) is used to make a secure connection with other computer. SSH uses TCP port 22. </p>
 <p>-By entering the following command in PowerShell: ssh username@<private IP Adress>, we can connect remotely to another computer. We will need to provide a password as well. In our case we connected to the Linux machine from our Windows machine.</p>
 <p>-We are able to use our Linux machine remotely. It is possible to interact with the Linux system by typing commands such as id, uname -a, touch file.txt, etc </p>
@@ -255,7 +255,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p>-Open PowerShell as admin and run: ipconfig /renew</p>
 <p>-Observe the DHCP traffic appearing in WireShark</p>
 
-<p>Observations</p>
+<p><b>Observations</b></p>
 <p>-The command ipconfig /release is the one that drops (releases) the current IP address.</p>
 <p>-The command ipconfig /renew is used to request a new IP address from the DHCP server.</p>
 <p>DHCP uses UDP ports 67 and 68</p>
@@ -277,7 +277,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p><b>6.2) </b>From your Windows 10 VM within a command line, use nslookup to see what google.com and disney.com’s IP addresses are</p>
 <p>-Observe the DNS traffic being show in WireShark</p>
 
-<p>Observations</p>
+<p><b>Observations</b></p>
 <p>nslookup (short for Name Server Lookup) is a command-line tool used to query Domain Name System (DNS) servers to obtain information about domain names, IP addresses, or DNS records.</p>
 <p>By using the nslookup command, we can obtain the IP addresses associated with domains such as pixar.com or google.com.</p>
 <p>DNS uses UDP port 53 and TCP port 53</p>
@@ -296,7 +296,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p><b>7) Observe RDP Traffic</b></p>
 <p><b>7.1) </b>Back in Wireshark, filter for RDP traffic only (tcp.port == 3389).</p>
 <p><b>7.2) </b>Observe the immediate non-stop spam of traffic</p>
-<p>Observations</p>
+<p><b>Observations</b></p>
 <p>- RDP (Remote Desktop protocol) is constantly showing you a live stream from one computer to another.Therefore, traffic is always being transmitted.</p>
 <p>The difference between SSH and RDP is that SSH only sends traffic when a command is entered and executed on the Linux (or other) server. In contrast, RDP is more bandwidth-intensive because it continuously transmits graphical data — essentially sending a live stream of the remote desktop’s display..</p>
 
