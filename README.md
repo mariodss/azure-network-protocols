@@ -85,7 +85,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 </p>
 <p><b>2) Observe ICMP Traffic</b></p>
-<p><b>2.1) </b>Use Remote Desktop to connect to your Windows 10 Virtual Machine. You will need to provide your public IP Address and username/password you created (If using Mac, install Microsoft Remote Desktop)</p>
+<p><b>2.1) </b>Use Remote Desktop to connect to your Windows 10 Virtual Machine. You will need to provide your public IP Address and username/password you created (If using Mac, install Microsoft Remote Desktop).</p>
 
 <br />
 
@@ -105,7 +105,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 
 </p>
-<p><b>2.3) </b>Open Wireshark and start packet capture</p>
+<p><b>2.3) </b>Open Wireshark and start packet capture.</p>
 
 <br />
 
@@ -114,7 +114,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 
 </p>
-<p><b>2.4) </b>Within Wireshark, filter for ICMP traffic only
+<p><b>2.4) </b>Within Wireshark, filter for ICMP traffic only.
 </p>
 
 <br />
@@ -126,7 +126,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 
 
 </p>
-<p><b>2.5) </b>Retrieve the private IP address of the Ubuntu VM (linux-vm) and attempt to ping it from within the Windows 10 VM
+<p><b>2.5) </b>Retrieve the private IP address of the Ubuntu VM (linux-vm) and attempt to ping it from within the Windows 10 VM.
 </p>
 <p>-Observe ping requests and replies within WireShark</p>
 
@@ -258,7 +258,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p><b>Observations</b></p>
 <p>-The command ipconfig /release is the one that drops (releases) the current IP address.</p>
 <p>-The command ipconfig /renew is used to request a new IP address from the DHCP server.</p>
-<p>DHCP uses UDP ports 67 and 68</p>
+<p>DHCP uses UDP ports 67 and 68.</p>
 <p>There is a method by which we can activate both release and renew commands in PowerShell. We do this by creating a .bat file in the notepad application. We need to type both commands within the file and then if we type the command <filename.bat> in PowerShell, we should be able to release and renew at the same time. This is done to observe DHCP traffic in Wireshark.</p>
 <p>By following the previous method, we can observe all the packets from the IP release/renewal process in the Wireshark interface. There are a total of five packets: Release, Discover, Offer, Request, and ACK. In summary, the IP address was released, and a process known as a broadcast began, in which a source address of 0.0.0.0 requested a new IP address from a DHCP server. After this, the DHCP server offered the IP address, and the computer accepted it.</p>
   
@@ -280,7 +280,7 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p><b>Observations</b></p>
 <p>nslookup (short for Name Server Lookup) is a command-line tool used to query Domain Name System (DNS) servers to obtain information about domain names, IP addresses, or DNS records.</p>
 <p>By using the nslookup command, we can obtain the IP addresses associated with domains such as pixar.com or google.com.</p>
-<p>DNS uses UDP port 53 and TCP port 53</p>
+<p>DNS uses UDP port 53 and TCP port 53.</p>
 
 
 
@@ -298,6 +298,6 @@ In this tutorial, we observe various network traffic to and from Azure Virtual M
 <p><b>7.2) </b>Observe the immediate non-stop spam of traffic</p>
 <p><b>Observations</b></p>
 <p>- RDP (Remote Desktop protocol) is constantly showing you a live stream from one computer to another.Therefore, traffic is always being transmitted.</p>
-<p>The difference between SSH and RDP is that SSH only sends traffic when a command is entered and executed on the Linux (or other) server. In contrast, RDP is more bandwidth-intensive because it continuously transmits graphical data — essentially sending a live stream of the remote desktop’s display..</p>
+<p>The difference between SSH and RDP is that SSH only sends traffic when a command is entered and executed on the Linux (or other) server. In contrast, RDP is more bandwidth-intensive because it continuously transmits graphical data — essentially sending a live stream of the remote desktop’s display.</p>
 
 <br />
